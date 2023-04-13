@@ -1,0 +1,10 @@
+<launch>
+  <!-- launchファイルを引数ありで実行 -->
+  <include file="$(find beginner_tutorials)/launch/service_arg.launch">
+    <arg name="add1_launch" value="100"/>
+    <arg name="add2_launch" value="101"/>
+  </include>
+
+  <!-- launchファイルを引数なしで実行 -->
+  <include file="$(find beginner_tutorials)/launch/pubsub_arg.launch"/>
+</launch>

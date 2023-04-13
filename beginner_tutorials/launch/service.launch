@@ -1,0 +1,26 @@
+<launch>
+
+  <!-- c++のサービスサーバとサービスクライアントを実行 -->
+  <node pkg="beginner_tutorials" name="talker_node" type="add_two_ints_server" output="screen"/>
+  <node pkg="beginner_tutorials" name="listener_node" type="add_two_ints_client">
+  </node>
+
+  <!-- pythonのpub, subを実行 -->
+  <node pkg="beginner_tutorials" name="talker_py_node" type="talker_pub.py"/>
+  <node pkg="beginner_tutorials" name="listener_py_node" type="listener_sub.py"/>
+
+  <!-- c++のpub, subを別グループとして実行(名前空間として別になるのでノード名が同じでも共存可能) -->
+  <group ns="tutorial">
+    <node pkg="beginner_tutorials" name="talker_node" type="talker"/>
+    <node pkg="beginner_tutorials" name="listener_node" type="listener"/>
+  </group>
+
+  <!-- pythonのpub, subのトピック名を変更して実行 -->
+  <node pkg="beginner_tutorials" name="talker_py_node2" type="talker_pub.py">
+    <remap from="chatter_py" to="chatter_py2"/>
+  </node>
+  <node pkg="beginner_tutorials" name="listener_py_node2" type="listener_sub.py">
+    <remap from="chatter_py" to="chatter_py2"/>
+  </node>
+
+</launch>

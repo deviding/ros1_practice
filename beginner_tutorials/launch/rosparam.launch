@@ -1,0 +1,24 @@
+<launch>
+
+  <!-- 引数をまとめて実行するサンプル -->
+
+  <group ns="rosparam">
+    <node pkg="beginner_tutorials" name="add_two_ints_server_py" type="add_two_ints_server.py"/>
+
+    <!-- rosparamで直接記述する場合 -->
+    <node pkg="beginner_tutorials" name="add_two_ints_client_py" type="add_two_ints_client_arg.py" output="screen">
+      <rosparam>
+        add1: 300
+        add2: 301
+      </rosparam>
+    </node>
+  </group>
+
+  <group ns="yaml">
+    <node pkg="beginner_tutorials" name="add_two_ints_server_py" type="add_two_ints_server.py"/>
+
+    <!-- yamlファイルを読み込む場合 -->
+    <rosparam command="load" file="$(find beginner_tutorials)/config/test_config.yaml"/>
+    <node pkg="beginner_tutorials" name="add_two_ints_client_py" type="add_two_ints_client_arg.py" output="screen"/>
+  </group>
+</launch>

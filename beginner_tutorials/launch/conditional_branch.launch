@@ -1,0 +1,21 @@
+<launch>
+
+  <!-- 条件分岐のデフォルト値 -->
+  <arg name="mode" default="mode0"/>
+
+  <group if="$(eval mode=='mode0' or mode=='mode1')">
+    <!-- 値がmode0またはmode1の場合 -->
+    <!-- launchファイルを引数ありで実行 -->
+    <include file="$(find beginner_tutorials)/launch/service_arg.launch">
+      <arg name="add1_launch" value="200"/>
+      <arg name="add2_launch" value="201"/>
+    </include>
+  </group>
+
+  <group if="$(eval mode=='mode2')">
+    <!-- 値がmode2の場合 -->
+    <!-- launchファイルを引数なしで実行 -->
+    <include file="$(find beginner_tutorials)/launch/pubsub_arg.launch"/>
+  </group>
+
+</launch>

@@ -1,0 +1,9 @@
+<launch>
+
+  <!-- c++のpub(引数あり), subを実行 -->
+  <node pkg="beginner_tutorials" name="talker_node" type="talker_msg_arg">
+    <param name="/msg" value="launch string"/> <!-- 引数の設定-->
+  </node>
+  <node pkg="beginner_tutorials" name="listener_node" type="listener_msg"/>
+
+</launch>

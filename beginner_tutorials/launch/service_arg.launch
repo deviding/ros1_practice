@@ -1,0 +1,15 @@
+<launch>
+
+  <!-- launchファイル自身の引数設定 -->
+  <arg name="add1_launch" default="11"/>
+  <arg name="add2_launch" default="12"/>
+
+  <!-- pythonのサービスサーバとクライアントを実行-->
+  <node pkg="beginner_tutorials" name="add_two_ints_server_py" type="add_two_ints_server.py"/>
+  <node pkg="beginner_tutorials" name="add_two_ints_client_py" type="add_two_ints_client_arg.py" output="screen">
+    <!-- 引数の設定 -->
+    <param name="add1" value="$(arg add1_launch)"/>
+    <param name="add2" value="$(arg add2_launch)"/>
+  </node>
+
+</launch>
