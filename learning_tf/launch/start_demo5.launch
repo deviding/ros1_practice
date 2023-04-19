@@ -1,0 +1,23 @@
+<launch>
+
+  <!-- Turtlesimのノード-->
+  <node pkg="turtlesim" type="turtlesim_node" name="sim"/>
+
+  <!-- 亀をキーボードで操作するためのノード -->
+  <node pkg="turtlesim" type="turtle_teleop_key" name="teleop" output="screen"/>
+
+  <!-- 設定値 -->
+  <param name="scale_linear"  value="2" type="double"/>
+  <param name="scale_angular" value="2" type="double"/>
+
+  <!-- 作成したtf broadcasterのノード -->
+  <node pkg="learning_tf" type="turtle_tf_broadcaster" args="/turtle1" name="turtle1_tf_broadcaster" />
+  <node pkg="learning_tf" type="turtle_tf_broadcaster" args="/turtle2" name="turtle2_tf_broadcaster" />
+
+  <!-- 作成したtf listenerのノード(typeをturtle_tf_listener4に変更) -->
+  <node pkg="learning_tf" type="turtle_tf_listener4" name="listener" />
+
+  <!-- 作成したフレーム追加のノード -->
+  <node pkg="learning_tf" type="frame_tf_broadcaster2" name="broadcaster_frame" />
+
+</launch>
