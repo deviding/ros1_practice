@@ -1,0 +1,25 @@
+<launch>
+
+  <!-- Turtlesimのノード-->
+  <node pkg="turtlesim" type="turtlesim_node" name="sim"/>
+
+  <!-- 亀をキーボードで操作するためのノード -->
+  <node pkg="turtlesim" type="turtle_teleop_key" name="teleop" output="screen"/>
+
+  <!-- 作成したtf broadcasterのノード -->
+  <node name="turtle1_tf_broadcaster" pkg="learning_tf" type="turtle_tf_broadcaster.py" respawn="false" output="screen" >
+    <!-- 設定値 -->
+    <param name="turtle" type="string" value="turtle1" />
+  </node>
+  <node name="turtle2_tf_broadcaster" pkg="learning_tf" type="turtle_tf_broadcaster.py" respawn="false" output="screen" >
+    <!-- 設定値 -->
+    <param name="turtle" type="string" value="turtle2" /> 
+  </node>
+
+  <!-- 作成したtf listenerのノード(typeをturtle_tf_listener5.pyに変更)  -->
+  <node pkg="learning_tf" type="turtle_tf_listener5.py" name="listener" />
+
+  <!-- 作成したフレーム追加のノード-->
+  <node pkg="learning_tf" type="frame_tf_broadcaster2.py" name="broadcaster_frame" />
+
+</launch>
